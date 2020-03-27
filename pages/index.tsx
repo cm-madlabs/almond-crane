@@ -1,19 +1,39 @@
-import * as React from 'react'
-import Link from 'next/link'
-import Layout from '../components/Layout'
-import { NextPage } from 'next'
+import * as React from 'react';
+import Layout from '../components/Layout';
+import RouteList from '../components/RouteList';
+import { NextPage } from 'next';
+import { Container } from '@material-ui/core';
 
 const IndexPage: NextPage = () => {
   return (
-    <Layout title="Home | Next.js + TypeScript Example">
-      <h1>Hello Next.js 👋</h1>
-      <p>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-      </p>
+    <Layout title="Home | Almond crane">
+      <Container>
+        <h1>Almond crane</h1>
+        <RouteList routeItems={[
+          {
+            id: '1',
+            name: 'ルート１',
+            departure: '出発地',
+            arrival: '目的地',
+            notification: true,
+            schedule: {},
+            timeTable: {},
+            requiredMinutes: 10,
+          },
+          {
+            id: '2',
+            name: 'ルート２',
+            departure: '出発地',
+            arrival: '目的地',
+            notification: true,
+            schedule: {},
+            timeTable: {},
+            requiredMinutes: 10,
+          },
+        ]}/>
+      </Container>
     </Layout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

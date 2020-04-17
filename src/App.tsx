@@ -7,7 +7,7 @@ import {
   Switch,
   useParams,
 } from 'react-router-dom';
-import { ListCourses } from './components/Organisms/body/list-cources';
+import { ListCoursesBody } from './components/Organisms/body/list-cources';
 
 const sampleRouteData: Course[] = [
   {
@@ -57,7 +57,7 @@ function App() {
           <h1>Home</h1>
         </Route>
         <Route exact path="/courses">
-          <ListCourses courses={data} />
+          <ListCoursesBody courses={data} />
         </Route>
         <Route exact path="/courses/add">
           <p>new route</p>

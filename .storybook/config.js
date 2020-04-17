@@ -3,6 +3,9 @@ import React from 'react';
 import {addDecorator, addParameters} from '@storybook/react';
 import {configureActions} from '@storybook/addon-actions';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import StoryRouter from 'storybook-react-router';
+
+addDecorator(StoryRouter());
 
 const CssBaselineDecorator = (storyFn) => {
   return (

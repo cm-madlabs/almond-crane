@@ -15,7 +15,7 @@ import { PageTitle } from '../../atoms/title/index';
 
 type Props = {
   title: string;
-  onMenuButtonClick: (event: React.MouseEvent<HTMLInputElement>) => void;
+  onMenuButtonClick: React.MouseEventHandler;
 };
 
 const useStyles = makeStyles((theme: Theme) =>

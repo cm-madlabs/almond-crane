@@ -71,7 +71,7 @@ export const ListCoursesPresentational: FC<ListCoursesPresentationalProps> = ({
   );
 };
 
-export const ListCourses: FC<ListCoursesProps> = ({ courses }) => {
+export const ListCoursesBody: FC<ListCoursesProps> = ({ courses }) => {
   const props: ListCoursesPresentationalProps = {
     ...useListCourses(),
     courses,

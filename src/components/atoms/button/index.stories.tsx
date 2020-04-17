@@ -6,7 +6,7 @@ import { ConfirmButton, DeleteButton, AddButton, DetailButton } from './';
 export default {title: 'Buttons' };
 
 export const confirmButton = () => {
-  return <ConfirmButton disabled={false} onClick={action('クリックされました') }>登録</ConfirmButton>
+  return <ConfirmButton disabled={false} onClick={action('クリックされました') }>確認</ConfirmButton>
 }
 
 export const deleteButton = () => {

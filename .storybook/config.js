@@ -1,9 +1,8 @@
 // https://github.com/storybooks/storybook
 import React from 'react';
-import { configure, addDecorator, addParameters } from '@storybook/react';
-import { configureActions } from '@storybook/addon-actions';
+import {addDecorator, addParameters} from '@storybook/react';
+import {configureActions} from '@storybook/addon-actions';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import requireContext from 'require-context.macro';
 
 const CssBaselineDecorator = (storyFn) => {
   return (
@@ -28,8 +27,3 @@ configureActions({
   // Limit the number of items logged into the actions panel
   limit: 20,
 });
-function loadStories() {
-  const req = requireContext('../src', true, /\.stories\.(tsx|js|jsx)$/);
-  req.keys().forEach((filename) => req(filename));
-}
-configure(loadStories, module);

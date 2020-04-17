@@ -1,15 +1,8 @@
-import * as React from 'react';
-import {View, Text, Button} from 'react-native';
-import {List} from './components/Course/List'
-import { CourseListDetail } from './components/Course/Detail'
-import { Course } from "./interfaces";
+import React, {FC} from 'react';
+import { Course } from './interfaces';
 
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-dom';
+import { ListCourses } from './components/Organisms/body/list-cources';
 
 const sampleRouteData: Course[] = [
     {
@@ -48,24 +41,27 @@ const data: Course[] = [
     ...sampleRouteData
 ];
 
+
+const CourseDetail: FC  = () => {
+    const {id} = useParams<{id: string}>();
+    return <h1>This course id is {id}</h1>
+}
+
 function App() {
     return (
         <Router>
             <Switch>
-                <Route path='/courses/add'>
+                <Route exact path='/' >
+                    <h1>Home</h1>
+                </Route>
+                <Route exact path='/courses'>
+                    <ListCourses courses={data}/>
+                </Route>
+                <Route exact path='/courses/:id'>
+                    <CourseDetail />
+                </Route>
+                <Route exact  path='/courses/add'>
                     <p>new route</p>
-                </Route>
-                <Route path='/courses/:id'>
-                    <CourseListDetail items={data} />
-                </Route>
-                <Route path='/'>
-                    <View>
-                        <Text>Hello React Native for Web!</Text>
-                        <List routeItems={data} />
-                        <Link to={`/courses/add`}>
-                          <Button title='ルートを追加' onPress={() => {}} />
-                        </Link>
-                    </View>
                 </Route>
             </Switch>
         </Router>

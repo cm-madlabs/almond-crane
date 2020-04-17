@@ -13,7 +13,7 @@ export const ConfirmButton: React.FC<Props> = ({
                                                  disabled = false
                                                }: Props) => {
   return (
-    <Button onClick={onClick} variant="contained" color="primary"
+    <Button onClick={onClick} variant="contained" color="default"
                       disabled={disabled}>{children}</Button>
   );
 };
@@ -36,7 +36,7 @@ export const AddButton: React.FC<Props> = ({
                                              disabled = false
                                            }: Props) => {
   return (
-    <Button onClick={onClick} variant="contained" color="default"
+    <Button onClick={onClick} variant="contained" color="primary"
                       disabled={disabled}>{children}</Button>
   );
 };

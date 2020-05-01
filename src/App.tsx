@@ -1,4 +1,6 @@
 import React from 'react';
+import LuxonUtils from '@date-io/luxon';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import {
   BrowserRouter as Router,
   Route,
@@ -16,18 +18,20 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
-          <h1>Home</h1>
-        </Route>
-        <Route exact path="/courses">
-          <ListCoursesPageContainer />
-        </Route>
-        <Route exact path="/courses/add">
-          <p>new route</p>
-        </Route>
-        <Route exact path="/courses/:id">
-          <CourseDetail />
-        </Route>
+        <MuiPickersUtilsProvider utils={LuxonUtils}>
+          <Route exact path="/">
+            <h1>Home</h1>
+          </Route>
+          <Route exact path="/courses">
+            <ListCoursesPageContainer />
+          </Route>
+          <Route exact path="/courses/add">
+            <p>new route</p>
+          </Route>
+          <Route exact path="/courses/:id">
+            <CourseDetail />
+          </Route>
+        </MuiPickersUtilsProvider>
       </Switch>
     </Router>
   );

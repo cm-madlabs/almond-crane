@@ -1,19 +1,16 @@
 import * as React from 'react';
 import {
   AppBar,
-  Button,
   createStyles,
   IconButton,
   makeStyles,
   Theme,
   Toolbar,
-  Typography,
 } from '@material-ui/core';
-// import {MenuIcon} from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
-import { PageTitle } from '../../atoms/title/index';
+import { PageTitle } from '../../atoms/title';
 
-type Props = {
+export type HeaderProps = {
   title: string;
   onMenuButtonClick: React.MouseEventHandler;
 };
@@ -32,10 +29,10 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Header: React.FC<Props> = ({
+export const Header: React.FC<HeaderProps> = ({
   title,
   onMenuButtonClick,
-}: Props) => {
+}: HeaderProps) => {
   const classes = useStyles();
 
   return (
@@ -52,7 +49,6 @@ export const Header: React.FC<Props> = ({
             <MenuIcon />
           </IconButton>
           <PageTitle>{title}</PageTitle>
-          {/*<Button color="inherit">Login</Button>*/}
         </Toolbar>
       </AppBar>
     </div>

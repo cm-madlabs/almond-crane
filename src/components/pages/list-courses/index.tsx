@@ -1,10 +1,10 @@
 import React from 'react';
 import { BaseTemplate } from '../../templates/base-template';
-import { HeaderProps } from '../../Organisms/header';
+import { HeaderProps } from '../../organisms/header';
 import {
   ListCoursesBody,
   ListCoursesProps,
-} from '../../Organisms/body/list-cources';
+} from '../../organisms/body/list-courses';
 import { Course } from '../../../interfaces';
 
 type ListCoursesPagePresentationalProps = {

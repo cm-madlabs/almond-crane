@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseTemplate } from './index';
 import { action } from '@storybook/addon-actions';
-import { HeaderProps } from '../../Organisms/header';
+import { HeaderProps } from '../../organisms/header';
 
 export default { title: 'templates/list-courses' };
 

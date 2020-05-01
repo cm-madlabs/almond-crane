@@ -5,7 +5,7 @@ import {
   Switch,
   useParams,
 } from 'react-router-dom';
-import { ListCoursesPageContainer } from './components/pages/list-cources';
+import { ListCoursesPageContainer } from './components/pages/list-courses';
 
 const CourseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();

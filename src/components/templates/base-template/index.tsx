@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Header, HeaderProps } from '../../Organisms/header';
+import { Header, HeaderProps } from '../../organisms/header';
 import {
   createStyles,
   CssBaseline,

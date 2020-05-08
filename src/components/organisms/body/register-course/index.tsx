@@ -28,7 +28,6 @@ export type RegisterCourseBodyProps = {
   actions: {
     onCancelClick: () => void;
     onSaveClick: (event: React.FormEvent<HTMLFormElement>) => void;
-    onDeleteClick: () => void;
   };
   arrival: {
     value: string;
@@ -144,16 +143,6 @@ export const RegisterCourseBody: React.FC<RegisterCourseBodyProps> = (
                 </Button>
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              color="secondary"
-              variant="contained"
-              fullWidth
-              onClick={props.actions.onDeleteClick}
-            >
-              削除
-            </Button>
           </Grid>
         </Grid>
       </form>

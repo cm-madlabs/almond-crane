@@ -35,7 +35,6 @@ export const demo = () => {
         },
       },
       actions: {
-        onDeleteClick: action('clicked delete button'),
         onSaveClick: (event) => {
           event.preventDefault();
           console.log('arrival: ', arrival);

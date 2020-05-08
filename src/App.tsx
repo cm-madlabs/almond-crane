@@ -8,6 +8,7 @@ import {
   useParams,
 } from 'react-router-dom';
 import { ListCoursesPageContainer } from './components/pages/list-courses';
+import { RegisterCoursePageContainer } from './components/pages/register-course';
 
 const CourseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -26,9 +27,9 @@ function App() {
             <ListCoursesPageContainer />
           </Route>
           <Route exact path="/courses/add">
-            <p>new route</p>
+            <RegisterCoursePageContainer />
           </Route>
-          <Route exact path="/courses/:id">
+          <Route exact path="/courses/details/:id">
             <CourseDetail />
           </Route>
         </MuiPickersUtilsProvider>

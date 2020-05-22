@@ -5,7 +5,7 @@ import {
   ListCoursesBody,
   ListCoursesProps,
 } from '../../organisms/body/list-courses';
-import { Course } from '../../../interfaces';
+import { list } from '../../../datastores/localstorage';
 
 type ListCoursesPagePresentationalProps = {
   body: ListCoursesProps;
@@ -31,35 +31,7 @@ export const ListCoursesPageContainer: React.FC = () => {
     onMenuButtonClick: () => console.log('メニューがクリックされました'),
   };
 
-  const courses: Course[] = [
-    {
-      id: '1',
-      name: 'ルート１',
-      departure: '出発地',
-      arrival: '目的地',
-      notification: true,
-      timeTable: {},
-      requiredMinutes: 10,
-    },
-    {
-      id: '2',
-      name: '会社 → 自宅',
-      departure: '会社 (岩本町オフィス)',
-      arrival: '岩本町',
-      notification: true,
-      timeTable: {},
-      requiredMinutes: 10,
-    },
-    {
-      id: '3',
-      name: '自宅 → 会社',
-      departure: '自宅',
-      arrival: 'XXX駅',
-      notification: true,
-      timeTable: {},
-      requiredMinutes: 5,
-    },
-  ];
+  const courses = list();
 
   const body: ListCoursesProps = {
     courses,

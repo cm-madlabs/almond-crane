@@ -16,7 +16,7 @@ const courses: Course[] = [
     name: 'name',
     notification: true,
     requiredMinutes: 19,
-    timeTable: {},
+    timeTable: [],
   },
   {
     arrival: 'Arrival',
@@ -25,7 +25,7 @@ const courses: Course[] = [
     name: 'name',
     notification: true,
     requiredMinutes: 19,
-    timeTable: {},
+    timeTable: [],
   },
   {
     arrival: 'Arrival',
@@ -34,7 +34,7 @@ const courses: Course[] = [
     name: 'name',
     notification: true,
     requiredMinutes: 19,
-    timeTable: {},
+    timeTable: [],
   },
   {
     arrival: 'Arrival',
@@ -43,7 +43,7 @@ const courses: Course[] = [
     name: 'name',
     notification: true,
     requiredMinutes: 19,
-    timeTable: {},
+    timeTable: [],
   },
   {
     arrival: 'Arrival',
@@ -52,7 +52,7 @@ const courses: Course[] = [
     name: 'name',
     notification: true,
     requiredMinutes: 19,
-    timeTable: {},
+    timeTable: [],
   },
 ];
 

@@ -17,7 +17,7 @@ type ScheduleDTO = {
   endTime?: number;
 };
 
-type TimeTableDTO = {};
+type TimeTableDTO = DateTime[];
 
 export const list = (): Course[] => {
   const courses: CourseDTO[] = JSON.parse(

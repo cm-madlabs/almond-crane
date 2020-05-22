@@ -21,4 +21,4 @@ type Schedule = {
   endTime: DateTime;
 };
 
-type TimeTable = {};
+type TimeTable = DateTime[];

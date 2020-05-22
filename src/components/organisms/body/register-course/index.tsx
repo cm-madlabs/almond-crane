@@ -127,7 +127,7 @@ export const RegisterCourseBody: React.FC<RegisterCourseBodyProps> = (
                   color="primary"
                   variant="contained"
                   fullWidth
-                  onChange={props.actions.onCancelClick}
+                  onClick={props.actions.onCancelClick}
                 >
                   キャンセル
                 </Button>

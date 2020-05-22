@@ -46,6 +46,8 @@ export const RegisterCoursePageContainer: React.FC = () => {
   const [endTime, setEndTime] = React.useState<MaterialUiPickersDate>(
     DateTime.fromISO('2016-05-25T09:00')
   );
+  const [name, setName] = React.useState<string>('出勤');
+  const [departure, setDeparture] = React.useState<string>('自宅');
   const [arrival, setArrival] = React.useState<string>('会社');
   const [requiredMinutes, setRequiredMinutes] = React.useState<number>(30);
 
@@ -70,8 +72,8 @@ export const RegisterCoursePageContainer: React.FC = () => {
         add({
           id: uuidv4(),
           arrival,
-          departure: 'dummy departure', //TODO:後から追加
-          name: 'dummy name', //TODO:後から追加
+          departure,
+          name,
           notification: enabled,
           requiredMinutes,
           timeTable: {}, //TODO:後から追加
@@ -80,6 +82,14 @@ export const RegisterCoursePageContainer: React.FC = () => {
         history.push('/courses');
       },
       onCancelClick: () => history.goBack(),
+    },
+    name: {
+      value: name,
+      onChange: setName,
+    },
+    departure: {
+      value: departure,
+      onChange: setDeparture,
     },
     arrival: {
       value: arrival,

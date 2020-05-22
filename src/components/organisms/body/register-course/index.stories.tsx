@@ -15,7 +15,9 @@ export const demo = () => {
     const [endTime, setEndTime] = React.useState<MaterialUiPickersDate>(
       DateTime.fromISO('2016-05-25T19:00')
     );
+    const [name, setName] = React.useState<string>('');
     const [arrival, setArrival] = React.useState<string>('');
+    const [departure, setDeparture] = React.useState<string>('');
     const [requiredMinutes, setRequiredMinutes] = React.useState<number>(1);
     const handleChange = () => setEnabled((prevState) => !prevState);
 
@@ -44,6 +46,14 @@ export const demo = () => {
           console.log('enabled: ', enabled);
         },
         onCancelClick: action('clicked cancel button'),
+      },
+      name: {
+        value: name,
+        onChange: setName,
+      },
+      departure: {
+        value: departure,
+        onChange: setDeparture,
       },
       arrival: {
         value: arrival,

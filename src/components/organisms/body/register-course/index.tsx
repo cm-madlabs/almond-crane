@@ -29,6 +29,14 @@ export type RegisterCourseBodyProps = {
     onCancelClick: () => void;
     onSaveClick: (event: React.FormEvent<HTMLFormElement>) => void;
   };
+  name: {
+    value: string;
+    onChange: (value: string) => void;
+  };
+  departure: {
+    value: string;
+    onChange: (value: string) => void;
+  };
   arrival: {
     value: string;
     onChange: (value: string) => void;
@@ -65,7 +73,29 @@ export const RegisterCourseBody: React.FC<RegisterCourseBodyProps> = (
           />
         </Grid>
         <Grid container spacing={2} justify="center" className={classes.root}>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
+            <TextField
+              name="name"
+              label="ルート名"
+              variant="outlined"
+              fullWidth
+              required
+              value={props.name.value}
+              onChange={(event) => props.name.onChange(event.target.value)}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              name="departure"
+              label="出発地"
+              variant="outlined"
+              fullWidth
+              required
+              value={props.departure.value}
+              onChange={(event) => props.departure.onChange(event.target.value)}
+            />
+          </Grid>
+          <Grid item xs={4}>
             <TextField
               name="arrival"
               label="目的地"
@@ -76,23 +106,23 @@ export const RegisterCourseBody: React.FC<RegisterCourseBodyProps> = (
               onChange={(event) => props.arrival.onChange(event.target.value)}
             />
           </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label="目的地までの時間[分]"
-              variant="outlined"
-              fullWidth
-              required
-              type="number"
-              value={props.requiredMinutes.value}
-              onChange={(event) =>
-                props.requiredMinutes.onChange(Number(event.target.value))
-              }
-              inputProps={{ min: '1', max: '1000', step: '1' }}
-            />
-          </Grid>
           <Grid item xs={12}>
             <Grid container spacing={2} justify="center" alignItems="center">
-              <Grid item xs={6}>
+              <Grid item xs={4}>
+                <TextField
+                  label="目的地までの時間[分]"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  type="number"
+                  value={props.requiredMinutes.value}
+                  onChange={(event) =>
+                    props.requiredMinutes.onChange(Number(event.target.value))
+                  }
+                  inputProps={{ min: '1', max: '1000', step: '1' }}
+                />
+              </Grid>
+              <Grid item xs={4}>
                 <TimePicker
                   clearable
                   ampm={false}
@@ -105,7 +135,7 @@ export const RegisterCourseBody: React.FC<RegisterCourseBodyProps> = (
                   }}
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <TimePicker
                   clearable
                   ampm={false}

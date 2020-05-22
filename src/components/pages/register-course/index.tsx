@@ -77,6 +77,7 @@ export const RegisterCoursePageContainer: React.FC = () => {
           timeTable: {}, //TODO:後から追加
           schedule: { endTime: endTime!, startTime: startTime! },
         });
+        history.push('/courses');
       },
       onCancelClick: () => history.goBack(),
     },

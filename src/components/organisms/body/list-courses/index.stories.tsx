@@ -16,7 +16,6 @@ const courses: Course[] = [
     name: 'name',
     notification: true,
     requiredMinutes: 19,
-    schedule: {},
     timeTable: {},
   },
   {
@@ -26,7 +25,6 @@ const courses: Course[] = [
     name: 'name',
     notification: true,
     requiredMinutes: 19,
-    schedule: {},
     timeTable: {},
   },
   {
@@ -36,7 +34,6 @@ const courses: Course[] = [
     name: 'name',
     notification: true,
     requiredMinutes: 19,
-    schedule: {},
     timeTable: {},
   },
   {
@@ -46,7 +43,6 @@ const courses: Course[] = [
     name: 'name',
     notification: true,
     requiredMinutes: 19,
-    schedule: {},
     timeTable: {},
   },
   {
@@ -56,7 +52,6 @@ const courses: Course[] = [
     name: 'name',
     notification: true,
     requiredMinutes: 19,
-    schedule: {},
     timeTable: {},
   },
 ];

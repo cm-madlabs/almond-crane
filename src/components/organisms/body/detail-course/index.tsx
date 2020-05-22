@@ -10,7 +10,8 @@ import {
 import { TimePicker } from '@material-ui/pickers';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 
-export type RegisterCourseBodyProps = {
+export type DetailCourseBodyProps = {
+  mode: 'register' | 'update';
   notification: {
     enabled: boolean;
     handleChange: () => void;
@@ -56,9 +57,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const RegisterCourseBody: React.FC<RegisterCourseBodyProps> = (
-  props
-) => {
+export const DetailCourseBody: React.FC<DetailCourseBodyProps> = (props) => {
   const classes = useStyles();
 
   return (
@@ -169,7 +168,7 @@ export const RegisterCourseBody: React.FC<RegisterCourseBodyProps> = (
                   fullWidth
                   type="submit"
                 >
-                  保存
+                  {props.mode === 'register' ? '新規作成' : '更新'}
                 </Button>
               </Grid>
             </Grid>

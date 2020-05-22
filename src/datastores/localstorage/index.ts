@@ -34,6 +34,25 @@ export const add = (input: Course) => {
   );
 };
 
+export const get = (id: string) => {
+  const course = list().find((value) => value.id === id);
+  if (course == null) {
+    throw new Error(`course id: ${id} is not found😱.`);
+  }
+  return course;
+};
+
+export const update = (input: Course) => {
+  const courses = list().map((val) => {
+    if (val.id === input.id) {
+      return convertCourseDomainIntoDTO(input);
+    }
+    return convertCourseDomainIntoDTO(val);
+  });
+
+  localStorage.setItem('courses', JSON.stringify(courses));
+};
+
 const convertCourseDomainIntoDTO = (input: Course): CourseDTO => {
   return {
     id: input.id,

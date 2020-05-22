@@ -6,17 +6,15 @@ import {
   DetailCourseBodyProps,
 } from '../../organisms/body/detail-course';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
-import { DateTime } from 'luxon';
-import { useHistory } from 'react-router-dom';
-import { add } from '../../../datastores/localstorage';
-import { v4 as uuidv4 } from 'uuid';
+import { useHistory, useParams } from 'react-router-dom';
+import { get, update } from '../../../datastores/localstorage';
 
-type RegisterCoursePagePresentationalProps = {
+type UpdateCoursePagePresentationalProps = {
   body: DetailCourseBodyProps;
   header: HeaderProps;
 };
 
-export const RegisterCoursePagePresentational: React.FC<RegisterCoursePagePresentationalProps> = ({
+export const UpdateCoursePagePresentational: React.FC<UpdateCoursePagePresentationalProps> = ({
   header,
   body,
 }) => {
@@ -29,30 +27,34 @@ export const RegisterCoursePagePresentational: React.FC<RegisterCoursePagePresen
   return <BaseTemplate header={header} main={main} />;
 };
 
-export const RegisterCoursePageContainer: React.FC = () => {
+export const UpdateCoursePageContainer: React.FC = () => {
   const header: HeaderProps = {
     title: '新規登録',
     onMenuButtonClick: () => console.log('メニューがクリックされました'),
   };
 
   const history = useHistory();
+  const { id } = useParams<{ id: string }>();
+  const data = get(id);
 
-  const [enabled, setEnabled] = React.useState<boolean>(true);
+  const [enabled, setEnabled] = React.useState<boolean>(data.notification);
   const handleChange = () => setEnabled((prevState) => !prevState);
 
   const [startTime, setStartTime] = React.useState<MaterialUiPickersDate>(
-    DateTime.fromISO('2016-05-25T08:00')
+    data.schedule?.startTime ?? null
   );
   const [endTime, setEndTime] = React.useState<MaterialUiPickersDate>(
-    DateTime.fromISO('2016-05-25T09:00')
+    data.schedule?.endTime ?? null
   );
-  const [name, setName] = React.useState<string>('出勤');
-  const [departure, setDeparture] = React.useState<string>('自宅');
-  const [arrival, setArrival] = React.useState<string>('会社');
-  const [requiredMinutes, setRequiredMinutes] = React.useState<number>(30);
+  const [name, setName] = React.useState<string>(data.name);
+  const [departure, setDeparture] = React.useState<string>(data.departure);
+  const [arrival, setArrival] = React.useState<string>(data.arrival);
+  const [requiredMinutes, setRequiredMinutes] = React.useState<number>(
+    data.requiredMinutes
+  );
 
   const body: DetailCourseBodyProps = {
-    mode: 'register',
+    mode: 'update',
     notification: {
       enabled,
       handleChange,
@@ -70,8 +72,8 @@ export const RegisterCoursePageContainer: React.FC = () => {
     actions: {
       onSaveClick: (event) => {
         event.preventDefault();
-        add({
-          id: uuidv4(),
+        update({
+          id,
           arrival,
           departure,
           name,
@@ -102,5 +104,5 @@ export const RegisterCoursePageContainer: React.FC = () => {
     },
   };
 
-  return <RegisterCoursePagePresentational header={header} body={body} />;
+  return <UpdateCoursePagePresentational header={header} body={body} />;
 };

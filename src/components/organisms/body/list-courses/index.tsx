@@ -54,7 +54,12 @@ export const ListCoursesPresentational: FC<ListCoursesPresentationalProps> = ({
                 onClick={() => handleOnClickCourse(r)}
               >
                 <ListItemText
-                  primary={`${r.departure} => ${r.arrival}`}
+                  primary={
+                    <>
+                      <h4>{r.name}</h4>
+                      <p>{`${r.departure} => ${r.arrival}`}</p>
+                    </>
+                  }
                   secondary={`残り${getRemainedMin(r)}分`}
                 />
               </ListItem>

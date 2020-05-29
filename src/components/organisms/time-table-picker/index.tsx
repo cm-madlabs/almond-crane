@@ -29,7 +29,7 @@ export const TimeTablePicker: React.FC<TimeTablePickerProps> = (props) => {
             variant="contained"
             onClick={() => setIsOpen(true)}
           >
-            {minute.value}
+            {props.mode === 'update' ? minute.value : '追加'}
           </Button>
         )}
       />

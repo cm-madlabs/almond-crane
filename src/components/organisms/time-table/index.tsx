@@ -37,32 +37,22 @@ const useTimeTable = ({
   return timeTable.map((time, index) => {
     // console.log('time: ', time);
 
-    const handleOnChange = (props: {
-      before: DateTime | null;
-      after: DateTime | null;
-    }) => {
+    const handleOnChange = (date: DateTime | null) => {
       const newTimeTable = timeTable.slice(0, timeTable.length);
 
-      if (props.after) {
-        newTimeTable.splice(index, 1, props.after);
+      if (date) {
+        newTimeTable.splice(index, 1, date);
       } else {
         newTimeTable.splice(index, 1);
       }
-
-      console.log(
-        'timeTable: ',
-        timeTable.map((value) => value.toISO())
-      );
-      console.log(
-        'newTimeTable: ',
-        newTimeTable.sort().map((value) => value.toISO())
-      );
 
       setTimeTable(newTimeTable.sort());
     };
 
     const timeTablePicker = (
-      <TimeTablePicker mode="update" value={time} onChange={handleOnChange} />
+      <span style={{ padding: '10px' }}>
+        <TimeTablePicker mode="update" value={time} onChange={handleOnChange} />
+      </span>
     );
 
     return {
@@ -136,27 +126,36 @@ export const TimeTable: React.FC<TimeTableProps> = (props) => {
   console.log('rows: ', rows);
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell className={classes.hour} align="center">
-              時
-            </TableCell>
-            <TableCell>分</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.hour}>
-              <TableCell component="th" scope="row" align="center">
-                {row.hour}
+    <>
+      <TimeTablePicker
+        mode="register"
+        value={null}
+        onChange={(date) => {
+          props.setTimeTable([...props.timeTable, date!].sort());
+        }}
+      />
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.hour} align="center">
+                時
               </TableCell>
-              <TableCell align="left">{row.minutes}</TableCell>
+              <TableCell>分</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.hour}>
+                <TableCell component="th" scope="row" align="center">
+                  {row.hour}
+                </TableCell>
+                <TableCell align="left">{row.minutes}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 };

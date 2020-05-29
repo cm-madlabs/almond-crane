@@ -1,21 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TimePicker } from '@material-ui/pickers';
 import { DateTime } from 'luxon';
 import Button from '@material-ui/core/Button';
 
 export type TimeTablePickerProps = {
-  onChange: (props: {
-    before: DateTime | null;
-    after: DateTime | null;
-  }) => void;
+  onChange: (date: DateTime | null) => void;
   value: DateTime | null;
   mode: 'register' | 'update';
 };
 
 export const TimeTablePicker: React.FC<TimeTablePickerProps> = (props) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [before, setBefore] = React.useState<DateTime | null>(props.value);
-
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <TimePicker
@@ -25,11 +20,8 @@ export const TimeTablePicker: React.FC<TimeTablePickerProps> = (props) => {
         onClose={() => setIsOpen(false)}
         ampm={false}
         format="mm"
-        value={before}
-        onChange={(after) => {
-          props.onChange({ before, after });
-          setBefore(after);
-        }}
+        value={props.value}
+        onChange={props.onChange}
         inputVariant="outlined"
         TextFieldComponent={(minute: any) => (
           <Button

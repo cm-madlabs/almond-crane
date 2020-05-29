@@ -14,7 +14,7 @@ export const register = () => {
     const props: TimeTablePickerProps = {
       mode: 'register',
       value: time,
-      onChange: ({ after }) => setTime(after),
+      onChange: setTime,
     };
 
     return <TimeTablePicker {...props} />;
@@ -32,7 +32,7 @@ export const update = () => {
     const props: TimeTablePickerProps = {
       mode: 'update',
       value: time,
-      onChange: ({ after }) => setTime(after),
+      onChange: setTime,
     };
 
     return <TimeTablePicker {...props} />;

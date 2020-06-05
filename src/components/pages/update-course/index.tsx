@@ -53,7 +53,7 @@ export const UpdateCoursePageContainer: React.FC = () => {
   const [requiredMinutes, setRequiredMinutes] = React.useState<number>(
     data.requiredMinutes
   );
-  const [timeTable, setTimeTable] = React.useState<DateTime[]>([]);
+  const [timeTable, setTimeTable] = React.useState<DateTime[]>(data.timeTable);
 
   const body: DetailCourseBodyProps = {
     mode: 'update',

@@ -13,11 +13,12 @@ type CourseDTO = {
 };
 
 type ScheduleDTO = {
-  startTime?: number;
-  endTime?: number;
+  startTime?: UnixTime;
+  endTime?: UnixTime;
 };
 
-type TimeTableDTO = DateTime[];
+type TimeTableDTO = UnixTime[];
+type UnixTime = number;
 
 export const list = (): Course[] => {
   const courses: CourseDTO[] = JSON.parse(
@@ -53,6 +54,12 @@ export const update = (input: Course) => {
   localStorage.setItem('courses', JSON.stringify(courses));
 };
 
+export const del = (input: Course) => {
+  const courses = list().filter((val) => val.id !== input.id);
+
+  localStorage.setItem('courses', JSON.stringify(courses));
+};
+
 const convertCourseDomainIntoDTO = (input: Course): CourseDTO => {
   return {
     id: input.id,
@@ -61,7 +68,7 @@ const convertCourseDomainIntoDTO = (input: Course): CourseDTO => {
     name: input.name,
     notification: input.notification,
     requiredMinutes: input.requiredMinutes,
-    timeTable: input.timeTable,
+    timeTable: input.timeTable.map((val) => val.toMillis()),
     schedule: {
       startTime: input.schedule?.startTime.toMillis(),
       endTime: input.schedule?.endTime.toMillis(),
@@ -70,6 +77,8 @@ const convertCourseDomainIntoDTO = (input: Course): CourseDTO => {
 };
 
 const convertCourseDTOIntoDomain = (input: CourseDTO): Course => {
+  console.log('input: ', input);
+
   return {
     id: input.id,
     arrival: input.arrival,
@@ -77,7 +86,7 @@ const convertCourseDTOIntoDomain = (input: CourseDTO): Course => {
     name: input.name,
     notification: input.notification,
     requiredMinutes: input.requiredMinutes,
-    timeTable: input.timeTable,
+    timeTable: input.timeTable.map((val) => DateTime.fromMillis(val)),
     schedule: {
       startTime: DateTime.fromMillis(input.schedule?.startTime ?? 0),
       endTime: DateTime.fromMillis(input.schedule?.endTime ?? 0),

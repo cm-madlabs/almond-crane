@@ -8,7 +8,7 @@ import { Course } from '../../../../interfaces';
 
 export default { title: 'Organisms/body' };
 
-const courses: Course[] = [
+const coursesSample: Course[] = [
   {
     arrival: 'Arrival',
     departure: 'Departure',
@@ -56,10 +56,13 @@ const courses: Course[] = [
   },
 ];
 
+const [courses, setCourses] = React.useState<Course[]>(coursesSample);
+
 export const listCourses = () => {
   const props: ListCoursesPresentationalProps = {
     handleAddCourse: action('ルート追加ボタンがクリックされました'),
     courses,
+    handleDelCourse: action('削除ボタンが押されました'),
     getRemainedMin: (_cource) => 10,
     handleOnClickCourse: action('ルートがクリックされました'),
   };

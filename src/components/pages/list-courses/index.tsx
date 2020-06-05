@@ -5,7 +5,8 @@ import {
   ListCoursesBody,
   ListCoursesProps,
 } from '../../organisms/body/list-courses';
-import { list } from '../../../datastores/localstorage';
+import { del, list } from '../../../datastores/localstorage';
+import { Course } from '../../../interfaces';
 
 type ListCoursesPagePresentationalProps = {
   body: ListCoursesProps;
@@ -31,10 +32,14 @@ export const ListCoursesPageContainer: React.FC = () => {
     onMenuButtonClick: () => console.log('メニューがクリックされました'),
   };
 
-  const courses = list();
+  const [courses, setCourses] = React.useState<Course[]>(list());
 
   const body: ListCoursesProps = {
     courses,
+    handleDelCourse: (targetCourse: Course) => {
+      del(targetCourse);
+      setCourses(list());
+    },
   };
 
   return <ListCoursesPagePresentational header={header} body={body} />;

@@ -3,15 +3,18 @@ import { AddButton } from '../../../atoms/button';
 import { Course } from '../../../../interfaces';
 import { Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { DeleteButton } from '../../../atoms/button';
 
 export type ListCoursesProps = {
   // FIXME: 適切なオブジェクトに直す
   courses: Course[];
+  handleDelCourse: (targetCourse: Course) => void;
 };
 
 export type ListCoursesPresentationalProps = {
   handleAddCourse: () => void;
   courses: Course[];
+  handleDelCourse: (course: Course) => void;
   getRemainedMin: (cource: Course) => number;
   handleOnClickCourse: (course: Course) => void;
 };
@@ -39,6 +42,7 @@ const useListCourses = () => {
 export const ListCoursesPresentational: FC<ListCoursesPresentationalProps> = ({
   handleAddCourse,
   courses,
+  handleDelCourse,
   getRemainedMin,
   handleOnClickCourse,
 }) => {
@@ -62,6 +66,15 @@ export const ListCoursesPresentational: FC<ListCoursesPresentationalProps> = ({
                   }
                   secondary={`残り${getRemainedMin(r)}分`}
                 />
+                <DeleteButton
+                  onClick={(event) => {
+                    handleDelCourse(r);
+                    event?.stopPropagation();
+                  }}
+                  disabled={false}
+                >
+                  削除
+                </DeleteButton>
               </ListItem>
             );
           })}
@@ -76,10 +89,14 @@ export const ListCoursesPresentational: FC<ListCoursesPresentationalProps> = ({
   );
 };
 
-export const ListCoursesBody: FC<ListCoursesProps> = ({ courses }) => {
+export const ListCoursesBody: FC<ListCoursesProps> = ({
+  courses,
+  handleDelCourse,
+}) => {
   const props: ListCoursesPresentationalProps = {
     ...useListCourses(),
     courses,
+    handleDelCourse,
   };
 
   return <ListCoursesPresentational {...props} />;

@@ -50,6 +50,7 @@ export const RegisterCoursePageContainer: React.FC = () => {
   const [departure, setDeparture] = React.useState<string>('自宅');
   const [arrival, setArrival] = React.useState<string>('会社');
   const [requiredMinutes, setRequiredMinutes] = React.useState<number>(30);
+  const [timeTable, setTimeTable] = React.useState<DateTime[]>([]);
 
   const body: DetailCourseBodyProps = {
     mode: 'register',
@@ -77,7 +78,7 @@ export const RegisterCoursePageContainer: React.FC = () => {
           name,
           notification: enabled,
           requiredMinutes,
-          timeTable: [], //TODO:後から追加
+          timeTable: timeTable, //TODO:後から追加
           schedule: { endTime: endTime!, startTime: startTime! },
         });
         history.push('/courses');
@@ -99,6 +100,10 @@ export const RegisterCoursePageContainer: React.FC = () => {
     requiredMinutes: {
       value: requiredMinutes,
       onChange: setRequiredMinutes,
+    },
+    timeTable: {
+      value: timeTable,
+      onChange: setTimeTable,
     },
   };
 

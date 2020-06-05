@@ -9,6 +9,8 @@ import {
 } from '@material-ui/core';
 import { TimePicker } from '@material-ui/pickers';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
+import { TimeTable } from '../../time-table';
+import { DateTime } from 'luxon';
 
 export type DetailCourseBodyProps = {
   mode: 'register' | 'update';
@@ -45,6 +47,10 @@ export type DetailCourseBodyProps = {
   requiredMinutes: {
     value: number;
     onChange: (value: number) => void;
+  };
+  timeTable: {
+    value: DateTime[];
+    onChange: (value: DateTime[]) => void;
   };
 };
 
@@ -148,6 +154,12 @@ export const DetailCourseBody: React.FC<DetailCourseBodyProps> = (props) => {
                 />
               </Grid>
             </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <TimeTable
+              timeTable={props.timeTable.value}
+              setTimeTable={props.timeTable.onChange}
+            ></TimeTable>
           </Grid>
           <Grid item xs={12}>
             <Grid container spacing={2} justify="center">

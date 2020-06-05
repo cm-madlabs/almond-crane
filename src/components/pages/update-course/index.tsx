@@ -8,6 +8,7 @@ import {
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { useHistory, useParams } from 'react-router-dom';
 import { get, update } from '../../../datastores/localstorage';
+import { DateTime } from 'luxon';
 
 type UpdateCoursePagePresentationalProps = {
   body: DetailCourseBodyProps;
@@ -52,6 +53,7 @@ export const UpdateCoursePageContainer: React.FC = () => {
   const [requiredMinutes, setRequiredMinutes] = React.useState<number>(
     data.requiredMinutes
   );
+  const [timeTable, setTimeTable] = React.useState<DateTime[]>([]);
 
   const body: DetailCourseBodyProps = {
     mode: 'update',
@@ -101,6 +103,10 @@ export const UpdateCoursePageContainer: React.FC = () => {
     requiredMinutes: {
       value: requiredMinutes,
       onChange: setRequiredMinutes,
+    },
+    timeTable: {
+      value: timeTable,
+      onChange: setTimeTable,
     },
   };
 

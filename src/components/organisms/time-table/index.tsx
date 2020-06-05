@@ -127,13 +127,19 @@ export const TimeTable: React.FC<TimeTableProps> = (props) => {
 
   return (
     <>
-      <TimeTablePicker
-        mode="register"
-        value={null}
-        onChange={(date) => {
-          props.setTimeTable([...props.timeTable, date!].sort());
+      <div
+        style={{
+          textAlign: 'left',
         }}
-      />
+      >
+        <TimeTablePicker
+          mode="register"
+          value={null}
+          onChange={(date) => {
+            props.setTimeTable([...props.timeTable, date!].sort());
+          }}
+        />
+      </div>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>

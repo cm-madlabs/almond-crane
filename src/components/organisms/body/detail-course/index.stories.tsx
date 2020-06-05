@@ -19,6 +19,7 @@ export const register = () => {
     const [arrival, setArrival] = React.useState<string>('');
     const [departure, setDeparture] = React.useState<string>('');
     const [requiredMinutes, setRequiredMinutes] = React.useState<number>(1);
+    const [timeTable, setTimeTable] = React.useState<DateTime[]>([]);
     const handleChange = () => setEnabled((prevState) => !prevState);
 
     const props: DetailCourseBodyProps = {
@@ -64,6 +65,10 @@ export const register = () => {
         value: requiredMinutes,
         onChange: setRequiredMinutes,
       },
+      timeTable: {
+        value: timeTable,
+        onChange: setTimeTable,
+      },
     };
 
     return <DetailCourseBody {...props} />;
@@ -85,6 +90,7 @@ export const update = () => {
     const [arrival, setArrival] = React.useState<string>('');
     const [departure, setDeparture] = React.useState<string>('');
     const [requiredMinutes, setRequiredMinutes] = React.useState<number>(1);
+    const [timeTable, setTimeTable] = React.useState<DateTime[]>([]);
     const handleChange = () => setEnabled((prevState) => !prevState);
 
     const props: DetailCourseBodyProps = {
@@ -129,6 +135,10 @@ export const update = () => {
       requiredMinutes: {
         value: requiredMinutes,
         onChange: setRequiredMinutes,
+      },
+      timeTable: {
+        value: timeTable,
+        onChange: setTimeTable,
       },
     };
 

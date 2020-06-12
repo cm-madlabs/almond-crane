@@ -4,11 +4,13 @@ import { Course } from '../../../../interfaces';
 import { Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { DeleteButton } from '../../../atoms/button';
+import { DateTime } from 'luxon';
 
 export type ListCoursesProps = {
   // FIXME: 適切なオブジェクトに直す
   courses: Course[];
   handleDelCourse: (targetCourse: Course) => void;
+  dateTimeNow: DateTime;
 };
 
 export type ListCoursesPresentationalProps = {
@@ -19,7 +21,7 @@ export type ListCoursesPresentationalProps = {
   handleOnClickCourse: (course: Course) => void;
 };
 
-const useListCourses = () => {
+const useListCourses = (dateTimeNow: DateTime) => {
   let history = useHistory();
 
   const handleAddCourse = () => {
@@ -27,8 +29,28 @@ const useListCourses = () => {
   };
 
   const getRemainedMin: ListCoursesPresentationalProps['getRemainedMin'] = (
-    _cource
-  ) => 10;
+    course
+  ) => {
+    const next = course.timeTable.filter((time) => {
+      // 時刻表のDatetimeが現在時刻のDatetimeが超えている直近のタイムを採用
+      const diff =
+        (time.toSeconds() - dateTimeNow.toSeconds()) / 60 -
+        course.requiredMinutes;
+      if (diff > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    if (next.length < 1) {
+      return -1;
+    }
+    // ソートされている前提なので先頭のタイムを採用
+    return (
+      (next[0].toSeconds() - dateTimeNow.toSeconds()) / 60 -
+      course.requiredMinutes
+    );
+  };
 
   const handleOnClickCourse: ListCoursesPresentationalProps['handleOnClickCourse'] = (
     cource
@@ -64,7 +86,9 @@ export const ListCoursesPresentational: FC<ListCoursesPresentationalProps> = ({
                       <p>{`${r.departure} => ${r.arrival}`}</p>
                     </>
                   }
-                  secondary={`残り${getRemainedMin(r)}分`}
+                  secondary={`残り${getRemainedMin(
+                    r
+                  )}分で移動を開始してください(徒歩${r.requiredMinutes}分想定)`}
                 />
                 <DeleteButton
                   onClick={(event) => {
@@ -92,9 +116,10 @@ export const ListCoursesPresentational: FC<ListCoursesPresentationalProps> = ({
 export const ListCoursesBody: FC<ListCoursesProps> = ({
   courses,
   handleDelCourse,
+  dateTimeNow,
 }) => {
   const props: ListCoursesPresentationalProps = {
-    ...useListCourses(),
+    ...useListCourses(dateTimeNow),
     courses,
     handleDelCourse,
   };

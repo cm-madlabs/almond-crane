@@ -81,7 +81,7 @@ export const UpdateCoursePageContainer: React.FC = () => {
           name,
           notification: enabled,
           requiredMinutes,
-          timeTable: [], //TODO:後から追加
+          timeTable,
           schedule: { endTime: endTime!, startTime: startTime! },
         });
         history.push('/courses');

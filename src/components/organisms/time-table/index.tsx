@@ -31,12 +31,7 @@ const useTimeTable = ({
   getComponent: () => React.ReactElement;
   hour: number;
 }[] => {
-  // const [datetime, setDateTime] = React.useState<DateTime | null>(null);
-  // const [hour, setHour] = React.useState<number>(0);
-
   return timeTable.map((time, index) => {
-    // console.log('time: ', time);
-
     const handleOnChange = (date: DateTime | null) => {
       const newTimeTable = timeTable.slice(0, timeTable.length);
 
@@ -50,7 +45,7 @@ const useTimeTable = ({
     };
 
     const timeTablePicker = (
-      <span style={{ padding: '10px' }}>
+      <span style={{ padding: '10px' }} key={time.toMillis()}>
         <TimeTablePicker mode="update" value={time} onChange={handleOnChange} />
       </span>
     );
@@ -108,22 +103,6 @@ export const TimeTable: React.FC<TimeTableProps> = (props) => {
       minutes,
     };
   });
-
-  // const rows = [
-  //   {
-  //     hour: 0,
-  //     minutes: [],
-  //   },
-  //
-  //   // createData(0, []),
-  //   // createData(1, []),
-  //   // createData(2, []),
-  //   // createData(3, []),
-  //   // createData(4, []),
-  //   // createData(5, []),
-  // ];
-
-  console.log('rows: ', rows);
 
   return (
     <>

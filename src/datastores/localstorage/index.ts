@@ -80,8 +80,6 @@ const convertCourseDomainIntoDTO = (input: Course): CourseDTO => {
 };
 
 const convertCourseDTOIntoDomain = (input: CourseDTO): Course => {
-  console.log('input: ', input);
-
   return {
     id: input.id,
     arrival: input.arrival,

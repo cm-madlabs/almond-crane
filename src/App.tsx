@@ -1,10 +1,23 @@
 import React from 'react';
 import LuxonUtils from '@date-io/luxon';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useHistory,
+} from 'react-router-dom';
 import { ListCoursesPageContainer } from './components/pages/list-courses';
 import { RegisterCoursePageContainer } from './components/pages/register-course';
 import { UpdateCoursePageContainer } from './components/pages/update-course';
+
+const Home = () => {
+  const history = useHistory();
+  React.useEffect(() => {
+    history.push('/courses');
+  }, [history]);
+  return null;
+};
 
 function App() {
   return (
@@ -12,7 +25,7 @@ function App() {
       <MuiPickersUtilsProvider utils={LuxonUtils}>
         <Switch>
           <Route exact path="/">
-            <h1>Home</h1>
+            <Home />
           </Route>
           <Route exact path="/courses">
             <ListCoursesPageContainer />

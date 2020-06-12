@@ -57,7 +57,10 @@ export const update = (input: Course) => {
 export const del = (input: Course) => {
   const courses = list().filter((val) => val.id !== input.id);
 
-  localStorage.setItem('courses', JSON.stringify(courses));
+  localStorage.setItem(
+    'courses',
+    JSON.stringify(courses.map(convertCourseDomainIntoDTO))
+  );
 };
 
 const convertCourseDomainIntoDTO = (input: Course): CourseDTO => {

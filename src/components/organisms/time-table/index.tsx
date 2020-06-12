@@ -134,7 +134,7 @@ export const TimeTable: React.FC<TimeTableProps> = (props) => {
       >
         <TimeTablePicker
           mode="register"
-          value={null}
+          value={DateTime.fromISO('2000-01-01T00:00:00')}
           onChange={(date) => {
             props.setTimeTable([...props.timeTable, date!].sort());
           }}
